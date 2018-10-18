@@ -1,6 +1,6 @@
 {
   "name": "callbag-merge-map",
-  "version": "1.1.0",
+  "version": "0.0.1",
   "description": "👜 Callbag operator that maps to inner source, subscribe and emit in order.",
   "main": "dist/callbag-merge-map.js",
   "module": "dist/callbag-merge-map.es.js",
