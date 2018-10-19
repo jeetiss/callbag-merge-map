@@ -17,6 +17,20 @@ test('works well when inners source complete before main source', () =>
     willBe('--i--i--------------------|'),
   ))
 
+test('works well when empty inners sources', () =>
+  pipe(
+    listenable('-o--o------o-o---o---o-o--|'),
+    concatMap(() => listenable('|')),
+    willBe('--------------------------|'),
+  ))
+
+test('works well with sync inners sources', () =>
+  pipe(
+    listenable('-o--o---|'),
+    concatMap(() => listenable('a|')),
+    willBe('-a--a---|'),
+  ))
+
 // test('works with pullable sources', () =>
 //   pipe(
 //     pullable('--a--b--c--|'),
