@@ -27,7 +27,7 @@ test('works well when empty inners sources', () =>
 test('works well with sync inners sources', () =>
   pipe(
     listenable('-o--o---|'),
-    concatMap(() => listenable('a|')),
+    concatMap(() => listenable('a-|')),
     willBe('-a--a---|'),
   ))
 

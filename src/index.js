@@ -44,19 +44,20 @@ export default function concatMap(project) {
       }
 
       if (t === 1) {
-        subscribtions.push(
-          subscribe(project(d), (T, D) => {
-            if (T === 1) sink(1, D)
-            if (
-              T === 2 &&
-              !sourceTalkback &&
-              subscribtions.every(sub => sub.ended())
-            ) {
-              // unsubscribe if it last inner source
-              sink(2, D)
-            }
-          }),
-        )
+        const dispose = subscribe(project(d), (T, D) => {
+          if (T === 1) sink(1, D)
+          if (
+            T === 2 &&
+            !sourceTalkback &&
+            subscribtions.every(sub => sub.ended())
+          ) {
+            // unsubscribe if it last inner source
+            sink(2, D)
+          }
+        })
+
+        subscribtions = subscribtions.filter(subs => !subs.ended())
+        if (!dispose.ended()) subscribtions.push(dispose)
       }
 
       if (t === 0 || t === 1) {
