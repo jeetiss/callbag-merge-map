@@ -5,29 +5,29 @@ import concatMap from '../src'
 
 test('works well when inners source complete after main source', () =>
   pipe(
-    listenable('--o----o-|'),
-    concatMap(() => listenable('---i-j-|')),
-    willBe('-----i-j--i-j-|'),
+    listenable('              --a-------|'),
+    concatMap(() => listenable('---a-b-|')),
+    willBe('                  -----a-b--|'),
   ))
 
 test('works well when inners source complete before main source', () =>
   pipe(
-    listenable('-o--o---------------------|'),
-    concatMap(() => listenable('-i-|')),
-    willBe('--i--i--------------------|'),
+    listenable('-a--a---------------------|'),
+    concatMap(() => listenable('-a-|')),
+    willBe('--a--a--------------------|'),
   ))
 
 test('works well when empty inners sources', () =>
   pipe(
-    listenable('-o--o------o-o---o---o-o--|'),
+    listenable('-a--a------a-a---a---a-a--|'),
     concatMap(() => listenable('|')),
     willBe('--------------------------|'),
   ))
 
 test('works well with sync inners sources', () =>
   pipe(
-    listenable('-o--o---|'),
-    concatMap(() => listenable('a-|')),
+    listenable('-a--a---|'),
+    concatMap(() => listenable('(a|)')),
     willBe('-a--a---|'),
   ))
 
